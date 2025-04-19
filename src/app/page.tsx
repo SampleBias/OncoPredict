@@ -13,6 +13,8 @@ import {useState} from 'react';
 import {PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
 import ShapPlot from '@/components/ShapPlot';
+import ComplexShapPlot from '@/components/ComplexShapPlot';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 interface Prediction {
   age: number;
@@ -31,6 +33,7 @@ export default function Home() {
   const [geneticMutations, setGeneticMutations] = useState<string>('');
   const [predictions, setPredictions] = useState<{cancerType: string; probability: number}[]>([]);
   const [predictionHistory, setPredictionHistory] = useState<Prediction[]>([]);
+  const [shapPlotType, setShapPlotType] = useState<string>("simple");
 
   const {toast} = useToast();
 
@@ -252,13 +255,22 @@ export default function Home() {
             </TabsContent>
             <TabsContent value="shap">
               <Card className="bg-secondary">
-                <CardHeader>
+                <CardHeader className="flex flex-row items-center justify-between">
                   <CardTitle className="text-lg font-semibold">SHAP Plot</CardTitle>
-                  <CardDescription className="text-sm text-muted-foreground">
-                    Feature importance for cancer type prediction
-                  </CardDescription>
+                  <Select value={shapPlotType} onValueChange={setShapPlotType}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Select SHAP Type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="simple">Simple SHAP</SelectItem>
+                      <SelectItem value="complex">Complex SHAP</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </CardHeader>
-                <CardContent><ShapPlot /></CardContent>
+                <CardDescription className="text-sm text-muted-foreground">
+                  Feature importance for cancer type prediction
+                </CardDescription>
+                <CardContent>{shapPlotType === "simple" ? <ShapPlot /> : <ComplexShapPlot />}</CardContent>
               </Card>
             </TabsContent>
           </Tabs>
