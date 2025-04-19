@@ -4,7 +4,8 @@
 
 - User Authentication: Secure user authentication and authorization.
 - Patient Data Input: Input fields for age, gender, CNA events, and genetic mutations.
-- Data Formatting: Formulate a prompt including patient data for the AI model.  Acts as a tool that formats the data for analysis.
+  <!-- Future Consideration: Could be expanded to include pre-calculated features like mutational signatures, which require significant upstream bioinformatics processing (similar to approaches like OncoNPC). -->
+- Data Formatting: Formulate a prompt including patient data for the AI model (currently Gemini). Acts as a tool that formats the data for analysis.
 - Results Presentation: Presents ranked cancer types with probability percentages.
 - Prediction History: Stores the input data and results for future reference
 
@@ -33,11 +34,18 @@ The application operates through a web interface with these key features:
 2. **Cancer Type Prediction**: Once logged in, users can submit patient data including:
    - Demographic information (age, gender)
    - Genomic data (CNA events, genetic mutations)
+   <!-- Note: Current scope uses user-provided mutations/CNAs. More complex systems like OncoNPC process raw data into features including mutational signatures. -->
 
 3. **Advanced Analysis**: Behind the scenes, the application processes this information using:
-   - A sophisticated AI model (GPT-4) that acts as an "expert oncologist"
-   - The system formats patient data into a structured prompt
-   - The AI analyzes patterns in the genomic markers and clinical factors
+   - A sophisticated AI model (**Google Gemini**) that acts as an "expert oncologist"
+     <!-- Current implementation uses Gemini for analysis based on the provided data. -->
+   - The system formats patient data into a structured prompt for Gemini.
+   - The AI analyzes patterns in the genomic markers and clinical factors provided in the prompt.
+
+   <!-- 
+   **Note on Alternative Approaches (Not Implemented):**
+   Other systems, like OncoNPC, utilize different methodologies. They often rely on extensive preprocessing of raw genomic data (mutations, CNAs, mutational signatures) to create structured features. These features are then used to train machine learning models, such as **XGBoost**, for classification. This requires a dedicated bioinformatics pipeline and different modeling techniques than the current Gemini-based approach used in OncoPredict. Integrating such features or models like XGBoost is a potential future enhancement but is **not part of the current implementation**. 
+   -->
 
 4. **Results Presentation**: The system returns:
    - A ranked list of potential cancer types
@@ -62,12 +70,11 @@ The application relies on three main data sources:
    - Complete history of all predictions
    - The input data and results for future reference
 
-3. **Google gemini**: For analysis, the system:
-   - Connects to OpenAI's API using a secured API key
-   - Leverages the advanced language model to interpret complex medical data
+3. **Google Gemini**: For analysis, the system:
+   - Connects to Google's AI API using a secured API key
+   - Leverages the advanced language model (Gemini) to interpret complex medical data based on the prompt.
    - Uses carefully crafted prompts designed for oncology applications
 
 The application follows healthcare security best practices with rate limiting to prevent abuse, secure authentication, and structured data validation to ensure accurate predictions.
 
 This platform essentially bridges the gap between raw genomic data and clinical cancer diagnosis, providing healthcare professionals with an AI-powered second opinion that can help guide treatment decisions.
-  

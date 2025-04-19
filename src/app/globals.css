@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,80 +7,81 @@ body {
 }
 
 @layer base {
+  /* Theme based on user-provided image - Adjusted for subtlety and metallic feel */
   :root {
-    --background: 270 5% 5%; /* Dark purple-gray */
-    --foreground: 0 0% 95%; /* Near white */
-    --card: 270 5% 10%;
+    --background: 224 71% 4%;        /* Dark Blue */
+    --foreground: 0 0% 95%;          /* Near White */
+    --card: 220 15% 18%;             /* Subtle Grayish Blue/Metallic tone */
     --card-foreground: 0 0% 95%;
-    --popover: 270 5% 10%;
+    --popover: 220 15% 18%;          /* Match card */
     --popover-foreground: 0 0% 95%;
-    /* Metallic Maroon Gradient */
-    --primary: 340 60% 40%; /* Dark Maroon */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 340 20% 30%; /* Medium Maroon */
-    --secondary-foreground: 0 0% 95%;
-    --muted: 340 10% 20%; /* Light Maroon */
-    --muted-foreground: 0 0% 70%;
-    --accent: 340 90% 60%; /* Vibrant Pink */
-    --accent-foreground: 0 0% 10%;
-    --destructive: 0 80% 50%;
+    --primary: 24 70% 60%;           /* Subtle Orange */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 330 60% 65%;        /* Subtle Pink */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 215 20% 25%;            /* Adjusted Muted Grayish Blue */
+    --muted-foreground: 215 15% 55%; /* Adjusted Lighter Gray */
+    --accent: 330 60% 65%;           /* Subtle Pink */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 70% 55%;        /* Slightly less intense Red */
     --destructive-foreground: 0 0% 100%;
-    --border: 270 5% 30%;
-    --input: 270 5% 30%;
-    --ring: 340 60% 40%;
-    --chart-1: 50 95% 60%;
-    --chart-2: 150 95% 60%;
-    --chart-3: 250 95% 60%;
-    --chart-4: 30 95% 60%;
-    --chart-5: 330 95% 60%;
+    --border: 220 15% 25%;           /* Match card/input tone */
+    --input: 220 15% 25%;            /* Match card/border tone */
+    --ring: 24 70% 60%;              /* Subtle Orange */
+    --chart-1: 24 70% 65%;           /* Subtle Orange shade */
+    --chart-2: 330 60% 70%;          /* Subtle Pink shade */
+    --chart-3: 20 70% 60%;           /* Subtle Lighter Orange */
+    --chart-4: 340 60% 70%;          /* Subtle Lighter Pink */
+    --chart-5: 10 70% 55%;           /* Subtle Darker Orange */
     --radius: 0.75rem;
-    --sidebar-background: 270 5% 10%;
-    --sidebar-foreground: 0 0% 85%;
-    --sidebar-primary: 340 60% 40%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 270 5% 20%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 270 5% 30%;
-    --sidebar-ring: 340 60% 40%;
+    --sidebar-background: 220 15% 18%; /* Match card */
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 24 70% 60%;    /* Subtle Orange */
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 330 60% 65%;    /* Subtle Pink */
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 15% 25%;    /* Match border */
+    --sidebar-ring: 24 70% 60%;       /* Subtle Orange */
   }
 
+  /* Dark theme explicitly defined (matching the above) */
   .dark {
-    --background: 270 5% 5%;
-    --foreground: 0 0% 95%;
-    --card: 270 5% 10%;
+    --background: 224 71% 4%;        /* Dark Blue */
+    --foreground: 0 0% 95%;          /* Near White */
+    --card: 220 15% 18%;             /* Subtle Grayish Blue/Metallic tone */
     --card-foreground: 0 0% 95%;
-    --popover: 270 5% 10%;
+    --popover: 220 15% 18%;          /* Match card */
     --popover-foreground: 0 0% 95%;
-    /* Metallic Maroon Gradient */
-    --primary: 340 60% 40%; /* Dark Maroon */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 340 20% 30%; /* Medium Maroon */
-    --secondary-foreground: 0 0% 95%;
-    --muted: 340 10% 20%; /* Light Maroon */
-    --muted-foreground: 0 0% 70%;
-    --accent: 350 90% 60%;
-    --accent-foreground: 0 0% 10%;
-    --destructive: 0 80% 50%;
+    --primary: 24 70% 60%;           /* Subtle Orange */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 330 60% 65%;        /* Subtle Pink */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 215 20% 25%;            /* Adjusted Muted Grayish Blue */
+    --muted-foreground: 215 15% 55%; /* Adjusted Lighter Gray */
+    --accent: 330 60% 65%;           /* Subtle Pink */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 70% 55%;        /* Slightly less intense Red */
     --destructive-foreground: 0 0% 100%;
-    --border: 270 5% 30%;
-    --input: 270 5% 30%;
-    --ring: 340 60% 40%;
-    --chart-1: 50 95% 60%;
-    --chart-2: 150 95% 60%;
-    --chart-3: 250 95% 60%;
-    --chart-4: 30 95% 60%;
-    --chart-5: 330 95% 60%;
-    --sidebar-background: 270 5% 10%;
-    --sidebar-foreground: 0 0% 85%;
-    --sidebar-primary: 340 60% 40%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 270 5% 20%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 270 5% 30%;
-    --sidebar-ring: 340 60% 40%;
+    --border: 220 15% 25%;           /* Match card/input tone */
+    --input: 220 15% 25%;            /* Match card/border tone */
+    --ring: 24 70% 60%;              /* Subtle Orange */
+    --chart-1: 24 70% 65%;           /* Subtle Orange shade */
+    --chart-2: 330 60% 70%;          /* Subtle Pink shade */
+    --chart-3: 20 70% 60%;           /* Subtle Lighter Orange */
+    --chart-4: 340 60% 70%;          /* Subtle Lighter Pink */
+    --chart-5: 10 70% 55%;           /* Subtle Darker Orange */
+    --sidebar-background: 220 15% 18%; /* Match card */
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 24 70% 60%;    /* Subtle Orange */
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 330 60% 65%;    /* Subtle Pink */
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 15% 25%;    /* Match border */
+    --sidebar-ring: 24 70% 60%;       /* Subtle Orange */
   }
 }
 
+/* Ensure base styles are applied correctly */
 @layer base {
   * {
     @apply border-border;
