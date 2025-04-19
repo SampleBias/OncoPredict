@@ -1,3 +1,4 @@
+
 'use client';
 
 import {predictCancerTypes} from '@/ai/flows/predict-cancer-types';
@@ -10,6 +11,7 @@ import {Textarea} from '@/components/ui/textarea';
 import {Toaster} from '@/components/ui/toaster';
 import {useToast} from '@/hooks/use-toast';
 import {useState} from 'react';
+import {PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
 interface Prediction {
   age: number;
@@ -18,6 +20,8 @@ interface Prediction {
   geneticMutations: string;
   cancerTypePredictions: {cancerType: string; probability: number}[];
 }
+
+const COLORS = ['#884d6f', '#a45a7f', '#c0678f', '#dc749f', '#f881af']; // Maroon shades
 
 export default function Home() {
   const [age, setAge] = useState<number | undefined>(undefined);
@@ -68,6 +72,45 @@ export default function Home() {
         variant: 'destructive',
       });
     }
+  };
+
+  const renderPieChart = () => {
+    if (!predictions || predictions.length === 0) {
+      return <p className="text-sm text-muted-foreground">No predictions available for Pie Chart.</p>;
+    }
+
+    return (
+      <ResponsiveContainer width="100%" height={300}>
+        <PieChart>
+          <Pie data={predictions} dataKey="probability" nameKey="cancerType" cx="50%" cy="50%" outerRadius={80} fill="#8884d8" label>
+            {predictions.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend />
+        </PieChart>
+      </ResponsiveContainer>
+    );
+  };
+
+  const renderBarChart = () => {
+    if (!predictions || predictions.length === 0) {
+      return <p className="text-sm text-muted-foreground">No predictions available for Bar Chart.</p>;
+    }
+
+    return (
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={predictions}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="cancerType" />
+          <YAxis domain={[0, 100]}/>
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="probability" fill={COLORS[0]} />
+        </BarChart>
+      </ResponsiveContainer>
+    );
   };
 
   return (
@@ -177,23 +220,27 @@ export default function Home() {
       </div>
 
       {predictions.length > 0 && (
-        <Card className="w-full max-w-4xl mt-6 bg-secondary">
-          <CardHeader>
-            <CardTitle className="text-lg font-semibold">Cancer Type Predictions</CardTitle>
-            <CardDescription className="text-sm text-muted-foreground">
-              Ranked list of potential cancer types
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ul className="list-none p-0">
-              {predictions.map((prediction, index) => (
-                <li key={index} className="py-2 border-b last:border-none border-border text-sm">
-                  {prediction.cancerType}: {prediction.probability.toFixed(2)}%
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        <div className="w-full max-w-4xl mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card className="bg-secondary">
+            <CardHeader>
+              <CardTitle className="text-lg font-semibold">Cancer Type Predictions - Pie Chart</CardTitle>
+              <CardDescription className="text-sm text-muted-foreground">
+                Visual representation of potential cancer types
+              </CardDescription>
+            </CardHeader>
+            <CardContent>{renderPieChart()}</CardContent>
+          </Card>
+
+          <Card className="bg-secondary">
+            <CardHeader>
+              <CardTitle className="text-lg font-semibold">Cancer Type Predictions - Bar Chart</CardTitle>
+              <CardDescription className="text-sm text-muted-foreground">
+                Comparative analysis of potential cancer types
+              </CardDescription>
+            </CardHeader>
+            <CardContent>{renderBarChart()}</CardContent>
+          </Card>
+        </div>
       )}
     </div>
   );

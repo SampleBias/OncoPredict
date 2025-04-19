@@ -15,19 +15,20 @@ body {
     --card-foreground: 0 0% 95%;
     --popover: 270 5% 10%;
     --popover-foreground: 0 0% 95%;
-    --primary: 220 70% 50%; /* Electric blue */
+    /* Metallic Maroon Gradient */
+    --primary: 340 60% 40%; /* Dark Maroon */
     --primary-foreground: 0 0% 100%;
-    --secondary: 270 5% 20%;
+    --secondary: 340 20% 30%; /* Medium Maroon */
     --secondary-foreground: 0 0% 95%;
-    --muted: 270 5% 15%;
+    --muted: 340 10% 20%; /* Light Maroon */
     --muted-foreground: 0 0% 70%;
-    --accent: 350 90% 60%; /* Vibrant pink */
+    --accent: 340 90% 60%; /* Vibrant Pink */
     --accent-foreground: 0 0% 10%;
     --destructive: 0 80% 50%;
     --destructive-foreground: 0 0% 100%;
     --border: 270 5% 30%;
     --input: 270 5% 30%;
-    --ring: 220 70% 50%;
+    --ring: 340 60% 40%;
     --chart-1: 50 95% 60%;
     --chart-2: 150 95% 60%;
     --chart-3: 250 95% 60%;
@@ -36,12 +37,12 @@ body {
     --radius: 0.75rem;
     --sidebar-background: 270 5% 10%;
     --sidebar-foreground: 0 0% 85%;
-    --sidebar-primary: 220 70% 50%;
+    --sidebar-primary: 340 60% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 270 5% 20%;
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 270 5% 30%;
-    --sidebar-ring: 220 70% 50%;
+    --sidebar-ring: 340 60% 40%;
   }
 
   .dark {
@@ -51,11 +52,12 @@ body {
     --card-foreground: 0 0% 95%;
     --popover: 270 5% 10%;
     --popover-foreground: 0 0% 95%;
-    --primary: 220 70% 50%;
+    /* Metallic Maroon Gradient */
+    --primary: 340 60% 40%; /* Dark Maroon */
     --primary-foreground: 0 0% 100%;
-    --secondary: 270 5% 20%;
+    --secondary: 340 20% 30%; /* Medium Maroon */
     --secondary-foreground: 0 0% 95%;
-    --muted: 270 5% 15%;
+    --muted: 340 10% 20%; /* Light Maroon */
     --muted-foreground: 0 0% 70%;
     --accent: 350 90% 60%;
     --accent-foreground: 0 0% 10%;
@@ -63,7 +65,7 @@ body {
     --destructive-foreground: 0 0% 100%;
     --border: 270 5% 30%;
     --input: 270 5% 30%;
-    --ring: 220 70% 50%;
+    --ring: 340 60% 40%;
     --chart-1: 50 95% 60%;
     --chart-2: 150 95% 60%;
     --chart-3: 250 95% 60%;
@@ -71,12 +73,12 @@ body {
     --chart-5: 330 95% 60%;
     --sidebar-background: 270 5% 10%;
     --sidebar-foreground: 0 0% 85%;
-    --sidebar-primary: 220 70% 50%;
+    --sidebar-primary: 340 60% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 270 5% 20%;
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 270 5% 30%;
-    --sidebar-ring: 220 70% 50%;
+    --sidebar-ring: 340 60% 40%;
   }
 }
 
