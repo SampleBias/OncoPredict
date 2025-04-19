@@ -14,6 +14,7 @@ import {PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, C
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
 import ShapPlot from '@/components/ShapPlot';
 import ComplexShapPlot from '@/components/ComplexShapPlot';
+import OncoPredictorPlot from '@/components/OncoPredictorPlot';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 interface Prediction {
@@ -264,13 +265,14 @@ export default function Home() {
                     <SelectContent>
                       <SelectItem value="simple">Simple SHAP</SelectItem>
                       <SelectItem value="complex">Complex SHAP</SelectItem>
+                      <SelectItem value="oncopredictor">OncoPredictor</SelectItem>
                     </SelectContent>
                   </Select>
                 </CardHeader>
                 <CardDescription className="text-sm text-muted-foreground">
                   Feature importance for cancer type prediction
                 </CardDescription>
-                <CardContent>{shapPlotType === "simple" ? <ShapPlot /> : <ComplexShapPlot />}</CardContent>
+                <CardContent>{shapPlotType === "simple" ? <ShapPlot /> : shapPlotType === "complex" ? <ComplexShapPlot /> : <OncoPredictorPlot />}</CardContent>
               </Card>
             </TabsContent>
           </Tabs>
