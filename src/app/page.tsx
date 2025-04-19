@@ -1,4 +1,3 @@
-
 'use client';
 
 import {predictCancerTypes} from '@/ai/flows/predict-cancer-types';
@@ -12,6 +11,8 @@ import {Toaster} from '@/components/ui/toaster';
 import {useToast} from '@/hooks/use-toast';
 import {useState} from 'react';
 import {PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
+import ShapPlot from '@/components/ShapPlot';
 
 interface Prediction {
   age: number;
@@ -220,26 +221,47 @@ export default function Home() {
       </div>
 
       {predictions.length > 0 && (
-        <div className="w-full max-w-4xl mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="bg-secondary">
-            <CardHeader>
-              <CardTitle className="text-lg font-semibold">Cancer Type Predictions - Pie Chart</CardTitle>
-              <CardDescription className="text-sm text-muted-foreground">
-                Visual representation of potential cancer types
-              </CardDescription>
-            </CardHeader>
-            <CardContent>{renderPieChart()}</CardContent>
-          </Card>
+        <div className="w-full max-w-4xl mt-6">
+          <Tabs defaultvalue="charts" className="w-full">
+            <TabsList>
+              <TabsTrigger value="charts">Charts</TabsTrigger>
+              <TabsTrigger value="shap">SHAP Plot</TabsTrigger>
+            </TabsList>
+            <TabsContent value="charts">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="bg-secondary">
+                  <CardHeader>
+                    <CardTitle className="text-lg font-semibold">Cancer Type Predictions - Pie Chart</CardTitle>
+                    <CardDescription className="text-sm text-muted-foreground">
+                      Visual representation of potential cancer types
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>{renderPieChart()}</CardContent>
+                </Card>
 
-          <Card className="bg-secondary">
-            <CardHeader>
-              <CardTitle className="text-lg font-semibold">Cancer Type Predictions - Bar Chart</CardTitle>
-              <CardDescription className="text-sm text-muted-foreground">
-                Comparative analysis of potential cancer types
-              </CardDescription>
-            </CardHeader>
-            <CardContent>{renderBarChart()}</CardContent>
-          </Card>
+                <Card className="bg-secondary">
+                  <CardHeader>
+                    <CardTitle className="text-lg font-semibold">Cancer Type Predictions - Bar Chart</CardTitle>
+                    <CardDescription className="text-sm text-muted-foreground">
+                      Comparative analysis of potential cancer types
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>{renderBarChart()}</CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+            <TabsContent value="shap">
+              <Card className="bg-secondary">
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold">SHAP Plot</CardTitle>
+                  <CardDescription className="text-sm text-muted-foreground">
+                    Feature importance for cancer type prediction
+                  </CardDescription>
+                </CardHeader>
+                <CardContent><ShapPlot /></CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
         </div>
       )}
     </div>
